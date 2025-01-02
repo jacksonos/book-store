@@ -65,13 +65,25 @@ app.get('/books/:id', async (req, res) => {
 app.put('/books/:id', async (req, res) => {
   try {
     if (!req.body.title || !req.body.author || !req.body.publicationYear) {
-      return response.status(400).send({ message: 'Send all required fields' });
+      return res.status(400).send({ message: 'Send all required fields' });
     }
     const result = await Book.findByIdAndUpdate(req.params.id, req.body, {
       new: true,
     });
     if (!result) return res.status(404).json({ message: 'Book not found' });
     return res.status(200).send({ message: 'Book updated successfully' });
+  } catch (error) {
+    console.log(error.message);
+    res.status(500).send({ message: error.message });
+  }
+});
+
+//Route to delete a book
+app.delete('/books/:id', async (req, res) => {
+  try {
+    const result = await Book.findByIdAndDelete(req.params.id);
+    if (!result) return res.status(404).json({ message: 'Book not found' });
+    return res.status(200).send({ message: 'Book deleted successfully' });
   } catch (error) {
     console.log(error.message);
     res.status(500).send({ message: error.message });
