@@ -11,8 +11,9 @@ const app = express();
 //Middleware for passing req body
 app.use(express.json());
 
-//Middleware for handling CORS POLICY
-//Custom CORS Origin
+// Middleware for handling CORS POLICY
+// Custom CORS Origin
+app.use(cors());
 // app.use(
 //   cors({
 //     origin: 'http://localhost:5000',
