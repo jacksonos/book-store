@@ -8,8 +8,12 @@ import {
   TableHead,
   TableRow,
   TableCell,
+  Container,
+  Paper,
+  Button,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
+import AddBoxIcon from '@mui/icons-material/AddBox';
 import InfoIcon from '@mui/icons-material/Info';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Link } from 'react-router-dom';
@@ -37,11 +41,16 @@ const Home = () => {
   }, []);
 
   return (
-    <div>
+    <Container maxWidth='md'>
+      <Link to='/books/create'>
+        <Button variant='contained' startIcon={<AddBoxIcon />}>
+          New Book
+        </Button>
+      </Link>
       {loading ? (
         <Spinner />
       ) : (
-        <TableContainer>
+        <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow>
@@ -58,7 +67,9 @@ const Home = () => {
                   <TableCell>{index + 1}</TableCell>
                   <TableCell>{book.title}</TableCell>
                   <TableCell>{book.author}</TableCell>
-                  <TableCell>{book.publicationYear}</TableCell>
+                  <TableCell className='font-black'>
+                    {book.publicationYear}
+                  </TableCell>
                   <TableCell>
                     <Link to={`/books/details/${book._id}`}>
                       <InfoIcon />
@@ -76,7 +87,7 @@ const Home = () => {
           </Table>
         </TableContainer>
       )}
-    </div>
+    </Container>
   );
 };
 

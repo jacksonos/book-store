@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import Spinner from '../components/Spinner';
-import axios from 'axios';
 import BackButton from '../components/BackButton';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { Container } from '@mui/material';
 
 const ShowBook = () => {
   const [book, setBook] = useState({});
@@ -26,36 +27,36 @@ const ShowBook = () => {
   }, []);
 
   return (
-    <div>
+    <Container maxWidth='md'>
       <BackButton />
       <h1 className='text-3xl my-4'>Show Book</h1>
       {loading ? (
         <Spinner />
       ) : (
-        <div className='flex flex-col rounded-xl w-fit p-4'>
-          <div className='my-4'>
-            <span className=''>Id</span>
+        <div className='flex flex-col rounded-xl w-fit p-4 border'>
+          <div className='my-1.5 flex flex-col'>
+            <span className='font-semibold'>Id</span>
             <span>{book._id}</span>
           </div>
-          <div className='my-4'>
-            <span className=''>Title</span>
+          <div className='my-1.5 flex flex-col'>
+            <span className='font-semibold'>Title</span>
             <span>{book.title}</span>
           </div>
-          <div className='my-4'>
-            <span className=''>Author</span>
+          <div className='my-1.5 flex flex-col'>
+            <span className='font-semibold'>Author</span>
             <span>{book.author}</span>
           </div>
-          <div className='my-4'>
-            <span className=''>Create Time</span>
+          <div className='my-1.5 flex flex-col'>
+            <span className='font-semibold'>Create Time</span>
             <span>{new Date(book.createdAt).toString()}</span>
           </div>
-          <div className='my-4'>
-            <span className=''>Last Updated Time</span>
+          <div className='my-1.5 flex flex-col'>
+            <span className='font-semibold'>Last Updated Time</span>
             <span>{new Date(book.updatedAt).toString()}</span>
           </div>
         </div>
       )}
-    </div>
+    </Container>
   );
 };
 
