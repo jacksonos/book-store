@@ -75,7 +75,8 @@ const CreateBook = () => {
           </Button>
         </div>
       </div>
-      <Box component='form' >
+      {/* fix below - need to change to use correctly mui components */}
+      <Box component='form'>
         <FormControl>
           <InputLabel htmlFor='title'>Email address</InputLabel>
           <Input id='title' aria-describedby='my-helper-text' type='text' />
@@ -93,8 +94,8 @@ const CreateBook = () => {
             type='number'
           />
           <FormHelperText id='my-helper-text'>
-          We'll never share your email.
-        </FormHelperText>
+            We'll never share your email.
+          </FormHelperText>
         </FormControl>
       </Box>
     </Container>
